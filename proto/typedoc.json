@@ -1,0 +1,8 @@
+{
+  "name": "amannthul Proto IDL",
+  "excludeExternals": true,
+  "excludePrivate": true,
+  "hideGenerator": true,
+  "externalPattern": "**/node_modules/**",
+  "readme": "ts-doc-readme.md"
+}

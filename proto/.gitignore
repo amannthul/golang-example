@@ -1,0 +1,7 @@
+bin/
+node_modules/
+tmp/
+
+buf-image.bin
+buf-image.json
+*.bak

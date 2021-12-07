@@ -1,0 +1,29 @@
+version: v1beta1
+build:
+  roots:
+    # 本项目 proto 根目录
+    - idl
+    # 引用 grpc-gateway 中的 googleapis
+    # - 3rd_party/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis
+  excludes:
+    # - bin
+    # - dist
+    # - examples
+    # - gen
+    # - node_modules
+    # - scripts
+lint:
+  # https://buf.build/docs/lint-checkers
+  use:
+    - DEFAULT
+    - COMMENTS
+  # - FILE_LOWER_SNAKE_CASE
+  ignore:
+    - google/api
+    - google/rpc
+  enum_zero_value_suffix: _INVALID
+  service_suffix: API
+
+breaking:
+  use:
+    - FILE

@@ -1,0 +1,28 @@
+{
+  "name": "golang-example-proto",
+  "version": "3.0.0",
+  "description": "amannthul Protocol 协议定义",
+  "dependencies": {
+    "google-protobuf": "^3.15.6",
+    "grpc": "^1.24.6",
+    "grpc-web": "^1.2.1",
+    "jshint": "^2.12.0"
+  },
+  "devDependencies": {
+    "grpc_tools_node_protoc_ts": "^5.1.3",
+    "npm-check-updates": "^11.3.0",
+    "ts-protoc-gen": "^0.14.0",
+    "typedoc": "^0.20.33",
+    "typescript": "^4.2.3"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+github.com/amannthul/golang-example.git"
+  },
+  "author": "amannthul",
+  "bugs": {
+    "url": "https://github.com/amannthul/golang-example/issues"
+  },
+  "homepage": "https://github.com/amannthul/golang-example#readme"
+}

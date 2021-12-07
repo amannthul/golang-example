@@ -1,0 +1,49 @@
+//
+// amannthul. (c) 2021
+//
+
+syntax = "proto3";
+
+package example.annotation.v1;
+
+option csharp_namespace = "Example.Annotation.V1";
+option go_package = "github.com/amannthul/golang-example/proto/gen/go/example/annotation/v1;annotationv1";
+option java_multiple_files = true;
+option java_outer_classname = "AnnotationProto";
+option java_package = "com.example.annotation.v1";
+option objc_class_prefix = "EAX";
+option php_namespace = "Example\\Annotation\\V1";
+
+import "google/protobuf/descriptor.proto";
+
+// extend google.protobuf.FileOptions {
+//   // 扩展 option
+//   bool file_opt = 51001;
+
+//   // 注意事项：
+//   // - 编号使用 51xxx 号段
+// }
+
+extend google.protobuf.ServiceOptions {
+  // 是否是公开 API Service
+  bool open_service = 52001;
+
+  // 注意事项：
+  // - 编号使用 52xxx 号段
+}
+
+extend google.protobuf.MethodOptions {
+  // 是否是公开 RPC Method
+  bool open_rpc = 53001;
+
+  // 注意事项：
+  // - 编号使用 53xxx 号段
+}
+
+// extend google.protobuf.FieldOptions {
+//   // 扩展 option
+//   bool field_opt = 54001;
+
+//   // 注意事项：
+//   // - 编号使用 54xxx 号段
+// }

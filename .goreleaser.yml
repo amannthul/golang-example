@@ -1,0 +1,80 @@
+# releaser sample
+project_name: {project_name}
+# This is an example goreleaser.yaml file with some sane defaults.
+# Make sure to check the documentation at http://goreleaser.com
+env:
+  - GO111MODULE=on
+  - GOPROXY=https://goproxy.io,direct
+  - GOPRIVATE=github.com/amannthul/*
+  - AE_VERSION=v2.31.1
+before:
+  hooks:
+    # - go mod download
+    - make generate
+    - make format
+    # - make lint
+    # - make test
+builds:
+  - id: "platform-report"
+    binary: report
+    main: ./srv/report
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+    goarch:
+      - amd64
+    flags:
+      - -v
+      # go1.13
+      - -trimpath
+    asmflags:
+      # use go build -trimpath instead for go1.13
+      # - all=-trimpath={{.Env.PWD}}
+    gcflags:
+      # use go build -trimpath instead for go1.13
+      # - all=-trimpath={{.Env.PWD}}
+    ldflags:
+      - >-
+        -s -w
+        -X main.ProductVersion={{.Version}}
+        -X main.GitCommit={{.ShortCommit}}
+        -X main.GoVersion={{.Env.GOVERSION}}
+        -X main.BuildTime={{.Date}}
+
+archives:
+  - replacements:
+      darwin: Darwin
+      linux: Linux
+      windows: Windows
+      386: i386
+      amd64: x86_64
+dockers:
+  - goos: linux
+    goarch: amd64
+    ids:
+      - platform-report
+    extra_files:
+      - build/ae/ae_data_v2
+    # Templates of the Docker image names.
+    image_templates:
+      - "949191617935.dkr.ecr.cn-north-1.amazonaws.com.cn/platform/report:latest"
+      - "949191617935.dkr.ecr.cn-north-1.amazonaws.com.cn/platform/report:{{ .Tag }}"
+      - "949191617935.dkr.ecr.cn-north-1.amazonaws.com.cn/platform/report:v{{ .Major }}.{{ .Minor }}"
+    dockerfile: srv/report/Dockerfile
+    # Template of the docker build flags.
+    build_flag_templates:
+      # 添加 AE_VERSION 环境变量
+      # - "--build-arg=AE_VERSION={{.Env.AE_VERSION}}"
+  
+checksum:
+  name_template: 'checksums.txt'
+snapshot:
+  name_template: "{{ .Tag }}-{{.ShortCommit}}"
+changelog:
+  sort: asc
+  filters:
+    exclude:
+    - '^docs:'
+    - '^test:'

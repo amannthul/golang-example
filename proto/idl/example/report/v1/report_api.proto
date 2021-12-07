@@ -1,0 +1,40 @@
+//
+// amannthul. (c) 2021
+//
+
+syntax = "proto3";
+
+package example.report.v1;
+
+option csharp_namespace = "Example.Report.V1";
+option go_package = "github.com/amannthul/golang-example/proto/gen/go/example/report/v1;reportv1";
+option java_multiple_files = true;
+option java_outer_classname = "ReportApiProto";
+option java_package = "com.example.report.v1";
+option objc_class_prefix = "ERX";
+option php_namespace = "Example\\Report\\V1";
+
+import "example/annotation/v1/annotation.proto";
+
+// ReportAPI 报告服务.
+service ReportAPI {
+    option(example.annotation.v1.open_service) = true;
+  
+    // SayHello Test.
+    rpc SayHello(SayHelloRequest) returns(SayHelloResponse) {
+      option(example.annotation.v1.open_rpc) = true;
+    };
+  
+  }
+  
+  // SayHello的请求
+  message SayHelloRequest {
+    // 消息
+    string message  = 1;
+  }
+  
+  // SayHello的响应
+  message SayHelloResponse {
+    // 响应结果
+    bool ok = 1;
+  }
